@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { TodoContext, TodoProvider } from "./context/TodoContext"
-import TodoForm from "./components/TodoInput"
+import TodoForm from "./components/TodoForm"
 
 
 function App() {
@@ -8,9 +8,10 @@ function App() {
   const [todos, setTodos] = useState([])
 
   function AddTodo(todo) {
-    setTodos(prev => [{ id: Date.now(), todo: todo, Completed: false }, ...prev])
 
-    console.log(todos);
+    setTodos(prev => [{ ...todo }, ...prev])
+
+    // console.log(todos);
   }
 
   function Edit(todo, id) {
@@ -22,20 +23,22 @@ function App() {
   }
 
   function CompleteToggle(id) {
-    setTodos(prev => prev.map(allValues => allValues.id === id ? { ...allValues, Completer: !allValues.Completed } : allValues))
+    setTodos(prev => prev.map(allValues => allValues.id === id ? { ...allValues, Completed: !allValues.Completed } : allValues))
   }
 
 
-  // useEffect(() => {
-  //   const getting_todos = JSON.parse(localStorage.getItem("todos"))
-  //   if (getting_todos && getting_todos.length > 0) {
-  //     setTodos(getting_todos)
-  //   }
-  // }, [])
+  useEffect(() => {
+    const getting_todos = JSON.parse(localStorage.getItem("todos"))
+    if (getting_todos && getting_todos.length > 0) {
+      setTodos(getting_todos)
+    }
+  }, [])
 
-  // useEffect(() => {
-  //   localStorage.setItem("todos", JSON.stringify(todos))
-  // }, [todos])
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos))
+  }, [todos])
+
+  // console.log();
   return (
     <TodoProvider value={{ AddTodo, CompleteToggle, Delete, Edit, todos }}>
       <div className="bg-[#172842] min-h-screen py-8">
