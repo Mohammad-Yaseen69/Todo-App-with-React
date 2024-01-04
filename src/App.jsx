@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { TodoContext, TodoProvider } from "./context/TodoContext"
 
 
@@ -34,6 +34,17 @@ function App() {
     })
   }
 
+
+  useEffect(() => {
+    const getting_todos = JSON.parse(localStorage.getItem("todos"))
+    if (getting_todos && getting_todos.length > 0) {
+      setTodos(getting_todos)
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem("todos" , JSON.stringify(todos))
+  }, [todos])
   return (
     <TodoProvider value={{ AddTodo, CompleteToggle, Delete, Edit, todos }}>
       <div className="bg-[#172842] min-h-screen py-8">
