@@ -5,9 +5,10 @@ export const TodoContext = createContext([
         id: 1,
         todo: 'BreakFast',
         completed: false,
-        Editable: false,
         Edit: (todo, id) => { },
-        Delete: (id) => { }
+        Delete: (id) => { },
+        AddTodo: (todo) => { },
+        CompleteToggle: (id) => { }
     }
 ])
 
