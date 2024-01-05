@@ -17,9 +17,11 @@ function TodoForm() {
             />
             <button onClick={(e) => {
                 e.preventDefault()
-                const newTodo = { id: Date.now(), todo , Completed: false };
-                AddTodo(newTodo)
-                setTodo('')
+                if (todo !== '') {
+                    const newTodo = { id: Date.now(), todo, Completed: false };
+                    AddTodo(newTodo)
+                    setTodo('')
+                }
             }} type="submit" className="rounded-r-lg px-3 py-1 bg-green-600 text-white shrink-0">
                 Add
             </button>
