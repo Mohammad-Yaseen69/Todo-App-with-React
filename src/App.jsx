@@ -16,7 +16,7 @@ function App() {
   }
 
   function Edit(todo, id) {
-    setTodos(prev => prev.map(allValues => allValues.id === id ? allValues.todo = todo : allValues))
+    setTodos(prev => prev.map(allValues => allValues.id === id ? { ...allValues, todo: todo } : allValues))
   }
 
   function Delete(id) {
@@ -51,7 +51,7 @@ function App() {
           <div className="flex flex-wrap gap-y-3">
             {todos.map(eachtodo => (
               <div className="w-full" key={eachtodo.id}>
-                <TodoItem todo={eachtodo}/>
+                <TodoItem todo={eachtodo} />
               </div>
             ))}
           </div>

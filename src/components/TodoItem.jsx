@@ -8,7 +8,6 @@ function TodoItem({ todo }) {
 
     const EditTodo = () => {
         Edit(todoMsg, todo.id)
-        setTodoMsg(todo.todo)
         console.log(todoMsg);
         setIsTodoEditable(false)
     }
